@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PreICFES Samara — Curso personalizado</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rojo: #E8294A;
+    --rojo-suave: #ff6b81;
+    --dorado: #F5A623;
+    --oscuro: #0f0f1a;
+    --card: #1a1a2e;
+    --card2: #16213e;
+    --texto: #f0f0f0;
+    --texto2: #a0a0c0;
+    --verde: #2ecc71;
+    --verde-dark: #1a8a4a;
+    --border: rgba(255,255,255,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--oscuro);
+    color: var(--texto);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── ESTRELLAS DE FONDO ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 50% 60%, rgba(255,255,255,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 10% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 70%, rgba(255,255,255,0.2) 0%, transparent 100%),
+      radial-gradient(2px 2px at 35% 15%, rgba(245,166,35,0.3) 0%, transparent 100%),
+      radial-gradient(2px 2px at 70% 45%, rgba(232,41,74,0.2) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 2.5rem 1rem 1.5rem;
+    background: linear-gradient(180deg, rgba(232,41,74,0.12) 0%, transparent 100%);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .badge-curso {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--rojo), var(--dorado));
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #fff 30%, var(--dorado));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+  }
+
+  .header-nombre {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 5vw, 2.8rem);
+    font-weight: 700;
+    color: var(--rojo-suave);
+    margin-bottom: 0.75rem;
+  }
+
+  .header-dedicatoria {
+    font-size: 13px;
+    color: var(--texto2);
+    max-width: 480px;
+    margin: 0 auto 1.2rem;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .header-firma {
+    font-size: 12px;
+    color: var(--dorado);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+  .heart { color: var(--rojo); font-style: normal; }
+
+  /* ── MARCADOR ── */
+  .score-bar {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 1rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  .score-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 22px;
+    text-align: center;
+    min-width: 90px;
+  }
+
+  .score-card .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--dorado);
+  }
+
+  .score-card .lbl {
+    font-size: 11px;
+    color: var(--texto2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* ── TABS DE ÁREA ── */
+  .area-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0.5rem 1rem 1rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  .tab {
+    padding: 7px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.15);
+    font-size: 13px;
+    cursor: pointer;
+    background: transparent;
+    color: var(--texto2);
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+  }
+
+  .tab:hover { border-color: var(--rojo); color: white; }
+
+  .tab.active {
+    background: linear-gradient(135deg, var(--rojo), #c0183a);
+    color: white;
+    border-color: transparent;
+    font-weight: 600;
+  }
+
+  /* ── BARRA DE PROGRESO ── */
+  .progress-wrap {
+    padding: 0 1rem;
+    max-width: 700px;
+    margin: 0 auto 1rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--texto2);
+    margin-bottom: 6px;
+  }
+
+  .progress-bg {
+    height: 5px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 3px;
+  }
+
+  .progress-fill {
+    height: 5px;
+    background: linear-gradient(90deg, var(--rojo), var(--dorado));
+    border-radius: 3px;
+    transition: width 0.4s ease;
+  }
+
+  /* ── LOADING ── */
+  .loading {
+    text-align: center;
+    padding: 3rem;
+    color: var(--texto2);
+    position: relative;
+    z-index: 10;
+  }
+
+  .spinner {
+    width: 36px; height: 36px;
+    border: 3px solid rgba(255,255,255,0.1);
+    border-top-color: var(--rojo);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 1rem;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── CONTENEDOR PRINCIPAL ── */
+  #app {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1rem 2rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* ── TARJETA DE PREGUNTA ── */
+  .q-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    animation: fadeUp 0.3s ease;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .q-meta {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .badge-area {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: rgba(232,41,74,0.15);
+    color: var(--rojo-suave);
+    border: 1px solid rgba(232,41,74,0.3);
+  }
+
+  .badge-dif {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  .dif-baja  { background: rgba(46,204,113,0.1);  color: #2ecc71; border: 1px solid rgba(46,204,113,0.3); }
+  .dif-media { background: rgba(245,166,35,0.1);  color: var(--dorado); border: 1px solid rgba(245,166,35,0.3); }
+  .dif-alta  { background: rgba(232,41,74,0.1);   color: var(--rojo-suave); border: 1px solid rgba(232,41,74,0.3); }
+
+  .q-num {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--texto2);
+  }
+
+  /* CONTEXTO */
+  .q-contexto {
+    background: rgba(255,255,255,0.04);
+    border-left: 3px solid var(--rojo);
+    border-radius: 0 10px 10px 0;
+    padding: 1rem;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #ccc;
+    margin-bottom: 1.2rem;
+    max-height: 180px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--rojo) transparent;
+  }
+
+  .q-contexto-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--rojo-suave);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  /* ENUNCIADO */
+  .q-texto {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--texto);
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+  }
+
+  /* OPCIONES */
+  .opciones { display: flex; flex-direction: column; gap: 10px; }
+
+  .opt {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+    background: rgba(255,255,255,0.03);
+    color: var(--texto);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    text-align: left;
+    transition: all 0.15s;
+    line-height: 1.5;
+  }
+
+  .opt:hover:not(:disabled) {
+    border-color: rgba(232,41,74,0.5);
+    background: rgba(232,41,74,0.07);
+  }
+
+  .opt-letra {
+    min-width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .opt.correct {
+    background: rgba(46,204,113,0.12);
+    border-color: rgba(46,204,113,0.5);
+    color: #2ecc71;
+  }
+
+  .opt.correct .opt-letra { background: rgba(46,204,113,0.3); }
+
+  .opt.wrong {
+    background: rgba(232,41,74,0.1);
+    border-color: rgba(232,41,74,0.4);
+    color: #ff6b81;
+  }
+
+  .opt.wrong .opt-letra { background: rgba(232,41,74,0.25); }
+
+  .opt:disabled { cursor: default; }
+
+  /* EXPLICACIÓN */
+  .explicacion {
+    margin-top: 1.2rem;
+    padding: 1rem 1.2rem;
+    background: rgba(245,166,35,0.07);
+    border-radius: 12px;
+    border-left: 3px solid var(--dorado);
+    animation: fadeUp 0.25s ease;
+  }
+
+  .explicacion-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--dorado);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .explicacion p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #ddd;
+  }
+
+  /* NAV */
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 0.5rem;
+  }
+
+  .btn {
+    padding: 10px 22px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.15);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    background: transparent;
+    color: var(--texto);
+    transition: all 0.15s;
+  }
+
+  .btn:hover { border-color: var(--rojo); color: white; }
+  .btn:disabled { opacity: 0.3; cursor: default; }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--rojo), #c0183a);
+    border: none;
+    color: white;
+    font-weight: 600;
+  }
+
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+  /* RESULTADO FINAL */
+  .resultado {
+    text-align: center;
+    padding: 3rem 1rem;
+    animation: fadeUp 0.4s ease;
+  }
+
+  .resultado-score {
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--dorado), var(--rojo-suave));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .resultado h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+    color: white;
+  }
+
+  .resultado p {
+    color: var(--texto2);
+    margin-bottom: 2rem;
+    font-size: 15px;
+  }
+
+  /* MODAL BIENVENIDA */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 1rem;
+    backdrop-filter: blur(6px);
+  }
+
+  .modal {
+    background: var(--card2);
+    border: 1px solid rgba(232,41,74,0.3);
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 0 60px rgba(232,41,74,0.15);
+  }
+
+  .modal-emoji { font-size: 48px; margin-bottom: 1rem; display: block; }
+
+  .modal h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #fff, var(--dorado));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .modal-nombre {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--rojo-suave);
+    margin-bottom: 1rem;
+  }
+
+  .modal p {
+    font-size: 14px;
+    color: var(--texto2);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .modal-firma {
+    font-size: 13px;
+    color: var(--dorado);
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  /* ERROR */
+  .error-msg {
+    text-align: center;
+    padding: 2rem;
+    color: var(--rojo-suave);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 500px) {
+    .q-card { padding: 1rem; }
+    .q-contexto { font-size: 12px; }
+    .q-texto { font-size: 14px; }
+    .opt { font-size: 13px; padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MODAL DE BIENVENIDA -->
+<div class="overlay" id="modal">
+  <div class="modal">
+    <span class="modal-emoji">⭐</span>
+    <h2>¡Bienvenida al</h2>
+    <div class="modal-nombre">Curso PreICFES</div>
+    <div class="modal-nombre" style="font-size:1.4rem; margin-top:-0.5rem;">Samara Gabriela</div>
+    <p>Esta herramienta fue creada especialmente para ti, con preguntas reales del examen Saber 11, explicaciones detalladas y seguimiento de tu progreso.<br><br>
+    Cada pregunta que respondas te acerca un paso más a ese puntaje que mereces. <span class="heart">♥</span></p>
+    <p class="modal-firma">Diseñado con mucho cariño por el Ingeniero Nelson Ruiz Lozano</p>
+    <button class="btn btn-primary" onclick="cerrarModal()" style="width:100%; padding:14px; font-size:15px;">
+      ¡Comenzar a practicar! 🚀
+    </button>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="badge-curso">Curso PreICFES · Saber 11°</div>
+  <h1>Practica y Aprende</h1>
+  <div class="header-nombre">Samara Gabriela</div>
+  <p class="header-dedicatoria">
+    "El éxito no llega por accidente. Cada pregunta que practicas hoy es una victoria en tu examen del mañana."
+  </p>
+  <div class="header-firma">
+    Diseñado con <span class="heart">♥</span> por el Ing. Nelson Ruiz Lozano
+  </div>
+</header>
+
+<!-- MARCADOR -->
+<div class="score-bar">
+  <div class="score-card">
+    <div class="num" id="sc-correctas">0</div>
+    <div class="lbl">Correctas</div>
+  </div>
+  <div class="score-card">
+    <div class="num" id="sc-incorrectas">0</div>
+    <div class="lbl">Incorrectas</div>
+  </div>
+  <div class="score-card">
+    <div class="num" id="sc-pct">—</div>
+    <div class="lbl">Acierto</div>
+  </div>
+  <div class="score-card">
+    <div class="num" id="sc-total">0</div>
+    <div class="lbl">Respondidas</div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="area-tabs" id="tabs"></div>
+
+<!-- PROGRESO -->
+<div class="progress-wrap">
+  <div class="progress-info">
+    <span id="prog-texto">Pregunta 0 de 0</span>
+    <span id="prog-pct">0%</span>
+  </div>
+  <div class="progress-bg">
+    <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+  </div>
+</div>
+
+<!-- APP PRINCIPAL -->
+<div id="app">
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <p>Cargando preguntas...</p>
+  </div>
+</div>
+
+<script>
+// ── CONFIGURACIÓN DE ARCHIVOS JSON ──
+// Agrega aquí los archivos JSON cuando los vayas subiendo a GitHub
+const ARCHIVOS = {
+  "Lectura Crítica":     "preguntas_lectura_critica.json",
+  "Matemáticas":         "preguntas_matematicas.json",
+  "Ciencias Naturales":  "preguntas_ciencias.json",
+  "Sociales":            "preguntas_sociales.json",
+  "Inglés":              "preguntas_ingles.json"
+};
+
+// ── ESTADO ──
+let banco = [];
+let preguntasFiltradas = [];
+let areaActual = "Todas";
+let idx = 0;
+let historial = {};
+let correctas = 0, incorrectas = 0;
+let areasDisponibles = new Set();
+
+// ── INICIO ──
+async function cargarTodo() {
+  banco = [];
+  const promises = Object.entries(ARCHIVOS).map(async ([area, archivo]) => {
+    try {
+      const res = await fetch(archivo);
+      if (!res.ok) return;
+      const data = await res.json();
+      data.forEach(p => { p.area = area; banco.push(p); });
+      areasDisponibles.add(area);
+    } catch(e) {
+      // Archivo no disponible aún, se ignora silenciosamente
+    }
+  });
+  await Promise.all(promises);
+
+  if (banco.length === 0) {
+    document.getElementById('app').innerHTML = `
+      <div class="error-msg">
+        <p style="font-size:2rem">📂</p>
+        <p>No se encontraron archivos de preguntas.<br>
+        Asegúrate de subir los archivos JSON al repositorio.</p>
+      </div>`;
+    return;
+  }
+
+  renderTabs();
+  filtrar();
+}
+
+// ── TABS ──
+function renderTabs() {
+  const cont = document.getElementById('tabs');
+  const areas = ["Todas", ...Array.from(areasDisponibles)];
+  cont.innerHTML = areas.map(a =>
+    `<button class="tab${a === areaActual ? ' active' : ''}" onclick="setArea('${a}')">${a}</button>`
+  ).join('');
+}
+
+function setArea(a) {
+  areaActual = a;
+  idx = 0;
+  filtrar();
+  renderTabs();
+}
+
+function filtrar() {
+  preguntasFiltradas = areaActual === "Todas"
+    ? [...banco]
+    : banco.filter(q => q.area === areaActual);
+  render();
+}
+
+// ── SCORE ──
+function updateScore() {
+  const total = correctas + incorrectas;
+  document.getElementById('sc-correctas').textContent = correctas;
+  document.getElementById('sc-incorrectas').textContent = incorrectas;
+  document.getElementById('sc-pct').textContent = total > 0 ? Math.round(correctas/total*100) + '%' : '—';
+  document.getElementById('sc-total').textContent = total;
+}
+
+// ── RENDER PRINCIPAL ──
+function render() {
+  document.getElementById('loading').style.display = 'none';
+  const app = document.getElementById('app');
+  const total = preguntasFiltradas.length;
+
+  // Progreso
+  const pct = total > 0 ? Math.round(idx / total * 100) : 0;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('prog-texto').textContent = `Pregunta ${Math.min(idx+1, total)} de ${total}`;
+  document.getElementById('prog-pct').textContent = pct + '%';
+
+  if (total === 0) {
+    app.innerHTML = `<div class="error-msg"><p>No hay preguntas en esta área todavía.</p></div>`;
+    return;
+  }
+
+  if (idx >= total) {
+    renderResultado();
+    return;
+  }
+
+  const q = preguntasFiltradas[idx];
+  const histKey = areaActual + '_' + idx;
+  const respondida = historial[histKey] !== undefined;
+  const seleccion = historial[histKey];
+
+  const difClass = q.dificultad === 'baja' ? 'dif-baja' : q.dificultad === 'media' ? 'dif-media' : 'dif-alta';
+  const difLabel = q.dificultad === 'baja' ? '● Fácil' : q.dificultad === 'media' ? '●● Medio' : '●●● Difícil';
+
+  const contextoHTML = q.contexto ? `
+    <div class="q-contexto">
+      <div class="q-contexto-label">📖 Contexto / Lectura</div>
+      ${q.contexto.replace(/\n/g, '<br>')}
+    </div>` : '';
+
+  const opcionesHTML = q.opciones.map((op, i) => {
+    let cls = '';
+    if (respondida) {
+      if (i === q.correcta) cls = ' correct';
+      else if (i === seleccion && seleccion !== q.correcta) cls = ' wrong';
+    }
+    const letra = String.fromCharCode(65 + i);
+    return `<button class="opt${cls}" ${respondida ? 'disabled' : ''} onclick="responder(${i})">
+      <span class="opt-letra">${letra}</span>
+      <span>${op}</span>
+    </button>`;
+  }).join('');
+
+  const explicacionHTML = respondida ? `
+    <div class="explicacion">
+      <div class="explicacion-label">💡 Explicación</div>
+      <p>${q.explicacion}</p>
+    </div>` : '';
+
+  app.innerHTML = `
+    <div class="q-card">
+      <div class="q-meta">
+        <span class="badge-area">${q.area}</span>
+        <span class="badge-dif ${difClass}">${difLabel}</span>
+        <span class="q-num">${idx + 1} / ${total}</span>
+      </div>
+      ${contextoHTML}
+      <div class="q-texto">${q.texto}</div>
+      <div class="opciones">${opcionesHTML}</div>
+      ${explicacionHTML}
+    </div>
+    <div class="nav-row">
+      <button class="btn" onclick="anterior()" ${idx === 0 ? 'disabled' : ''}>← Anterior</button>
+      <button class="btn btn-primary" onclick="siguiente()">
+        ${idx < total - 1 ? 'Siguiente →' : 'Ver resultados ✓'}
+      </button>
+    </div>`;
+}
+
+// ── RESPONDER ──
+function responder(i) {
+  const histKey = areaActual + '_' + idx;
+  if (historial[histKey] !== undefined) return;
+  historial[histKey] = i;
+  const q = preguntasFiltradas[idx];
+  if (i === q.correcta) correctas++;
+  else incorrectas++;
+  updateScore();
+  render();
+}
+
+function siguiente() { if (idx <= preguntasFiltradas.length) { idx++; render(); } }
+function anterior()  { if (idx > 0) { idx--; render(); } }
+
+// ── RESULTADO ──
+function renderResultado() {
+  const total = correctas + incorrectas;
+  const pct = total > 0 ? Math.round(correctas / total * 100) : 0;
+  let emoji, mensaje;
+  if (pct >= 85) { emoji = '🏆'; mensaje = '¡Excelente, Samara! Ese puntaje habla de tu esfuerzo.'; }
+  else if (pct >= 70) { emoji = '⭐'; mensaje = '¡Muy bien! Vas por buen camino, sigue así.'; }
+  else if (pct >= 50) { emoji = '💪'; mensaje = 'Buen avance. Repasa los temas y vuelve a intentarlo.'; }
+  else { emoji = '📚'; mensaje = 'Sigue practicando, cada intento te hace más fuerte.'; }
+
+  document.getElementById('app').innerHTML = `
+    <div class="resultado">
+      <div style="font-size:3rem; margin-bottom:0.5rem">${emoji}</div>
+      <div class="resultado-score">${pct}%</div>
+      <h2>${mensaje}</h2>
+      <p>${correctas} correctas de ${total} preguntas en ${areaActual === 'Todas' ? 'todas las áreas' : areaActual}</p>
+      <button class="btn btn-primary" onclick="reiniciar()" style="padding:14px 32px; font-size:15px; margin-right:10px">
+        🔄 Volver a practicar
+      </button>
+      <button class="btn" onclick="setArea('Todas')" style="padding:14px 22px; font-size:14px">
+        Ver todas las áreas
+      </button>
+    </div>`;
+}
+
+// ── REINICIAR ──
+function reiniciar() {
+  idx = 0;
+  historial = {};
+  correctas = 0;
+  incorrectas = 0;
+  updateScore();
+  filtrar();
+}
+
+// ── MODAL ──
+function cerrarModal() {
+  document.getElementById('modal').style.display = 'none';
+}
+
+// ── ARRANCAR ──
+cargarTodo();
+</script>
+</body>
+</html>
