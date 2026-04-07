@@ -16,12 +16,10 @@
     --texto: #f0f0f0;
     --texto2: #a0a0c0;
     --verde: #2ecc71;
-    --verde-dark: #1a8a4a;
     --border: rgba(255,255,255,0.08);
+    --magenta: #c026d3;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
     font-family: 'DM Sans', sans-serif;
     background: var(--oscuro);
@@ -29,8 +27,6 @@
     min-height: 100vh;
     overflow-x: hidden;
   }
-
-  /* ── ESTRELLAS DE FONDO ── */
   body::before {
     content: '';
     position: fixed;
@@ -40,517 +36,295 @@
       radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.3) 0%, transparent 100%),
       radial-gradient(1px 1px at 50% 60%, rgba(255,255,255,0.2) 0%, transparent 100%),
       radial-gradient(1px 1px at 10% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
-      radial-gradient(1px 1px at 90% 70%, rgba(255,255,255,0.2) 0%, transparent 100%),
       radial-gradient(2px 2px at 35% 15%, rgba(245,166,35,0.3) 0%, transparent 100%),
       radial-gradient(2px 2px at 70% 45%, rgba(232,41,74,0.2) 0%, transparent 100%);
     pointer-events: none;
     z-index: 0;
   }
 
-  /* ── HEADER ── */
+  /* HEADER */
   header {
-    position: relative;
-    z-index: 10;
+    position: relative; z-index: 10;
     text-align: center;
     padding: 2.5rem 1rem 1.5rem;
     background: linear-gradient(180deg, rgba(232,41,74,0.12) 0%, transparent 100%);
     border-bottom: 1px solid var(--border);
   }
-
   .badge-curso {
     display: inline-block;
     background: linear-gradient(135deg, var(--rojo), var(--dorado));
-    color: white;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 5px 16px;
-    border-radius: 20px;
-    margin-bottom: 1rem;
+    color: white; font-size: 11px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 5px 16px; border-radius: 20px; margin-bottom: 1rem;
   }
-
   header h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 6vw, 3.5rem);
-    font-weight: 900;
-    line-height: 1.1;
+    font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 900; line-height: 1.1;
     background: linear-gradient(135deg, #fff 30%, var(--dorado));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 0.5rem;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; margin-bottom: 0.5rem;
   }
-
   .header-nombre {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(1.6rem, 5vw, 2.8rem);
-    font-weight: 700;
-    color: var(--rojo-suave);
-    margin-bottom: 0.75rem;
+    font-size: clamp(1.6rem, 5vw, 2.8rem); font-weight: 700;
+    color: var(--rojo-suave); margin-bottom: 0.75rem;
   }
-
   .header-dedicatoria {
-    font-size: 13px;
-    color: var(--texto2);
-    max-width: 480px;
-    margin: 0 auto 1.2rem;
-    line-height: 1.6;
-    font-style: italic;
+    font-size: 13px; color: var(--texto2);
+    max-width: 480px; margin: 0 auto 1.2rem;
+    line-height: 1.6; font-style: italic;
   }
-
-  .header-firma {
-    font-size: 12px;
-    color: var(--dorado);
-    font-weight: 500;
-    letter-spacing: 0.5px;
-  }
+  .header-firma { font-size: 12px; color: var(--dorado); font-weight: 500; }
   .heart { color: var(--rojo); font-style: normal; }
 
-  /* ── MARCADOR ── */
+  /* SCORE */
   .score-bar {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 1rem;
-    position: relative;
-    z-index: 10;
+    display: flex; gap: 10px; justify-content: center;
+    flex-wrap: wrap; padding: 1rem;
+    position: relative; z-index: 10;
   }
-
   .score-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 10px 22px;
-    text-align: center;
-    min-width: 90px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 10px 22px; text-align: center; min-width: 90px;
   }
-
   .score-card .num {
     font-family: 'Playfair Display', serif;
-    font-size: 26px;
-    font-weight: 700;
-    color: var(--dorado);
+    font-size: 26px; font-weight: 700; color: var(--dorado);
   }
+  .score-card .lbl { font-size: 11px; color: var(--texto2); text-transform: uppercase; letter-spacing: 1px; }
 
-  .score-card .lbl {
-    font-size: 11px;
-    color: var(--texto2);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  /* ── TABS DE ÁREA ── */
+  /* TABS */
   .area-tabs {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 0.5rem 1rem 1rem;
-    position: relative;
-    z-index: 10;
+    display: flex; gap: 8px; flex-wrap: wrap;
+    justify-content: center; padding: 0.5rem 1rem 1rem;
+    position: relative; z-index: 10;
   }
-
   .tab {
-    padding: 7px 16px;
-    border-radius: 20px;
+    padding: 7px 16px; border-radius: 20px;
     border: 1px solid rgba(255,255,255,0.15);
-    font-size: 13px;
-    cursor: pointer;
-    background: transparent;
-    color: var(--texto2);
-    font-family: 'DM Sans', sans-serif;
-    transition: all 0.2s;
+    font-size: 13px; cursor: pointer; background: transparent;
+    color: var(--texto2); font-family: 'DM Sans', sans-serif; transition: all 0.2s;
   }
-
   .tab:hover { border-color: var(--rojo); color: white; }
-
   .tab.active {
     background: linear-gradient(135deg, var(--rojo), #c0183a);
-    color: white;
-    border-color: transparent;
-    font-weight: 600;
+    color: white; border-color: transparent; font-weight: 600;
   }
 
-  /* ── BARRA DE PROGRESO ── */
+  /* PROGRESO */
   .progress-wrap {
-    padding: 0 1rem;
-    max-width: 700px;
-    margin: 0 auto 1rem;
-    position: relative;
-    z-index: 10;
+    padding: 0 1rem; max-width: 700px;
+    margin: 0 auto 1rem; position: relative; z-index: 10;
   }
-
   .progress-info {
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    color: var(--texto2);
-    margin-bottom: 6px;
+    display: flex; justify-content: space-between;
+    font-size: 12px; color: var(--texto2); margin-bottom: 6px;
   }
-
-  .progress-bg {
-    height: 5px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 3px;
-  }
-
+  .progress-bg { height: 5px; background: rgba(255,255,255,0.08); border-radius: 3px; }
   .progress-fill {
     height: 5px;
     background: linear-gradient(90deg, var(--rojo), var(--dorado));
-    border-radius: 3px;
-    transition: width 0.4s ease;
+    border-radius: 3px; transition: width 0.4s ease;
   }
 
-  /* ── LOADING ── */
-  .loading {
-    text-align: center;
-    padding: 3rem;
-    color: var(--texto2);
-    position: relative;
-    z-index: 10;
-  }
-
+  /* LOADING */
+  .loading { text-align: center; padding: 3rem; color: var(--texto2); position: relative; z-index: 10; }
   .spinner {
     width: 36px; height: 36px;
     border: 3px solid rgba(255,255,255,0.1);
-    border-top-color: var(--rojo);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    margin: 0 auto 1rem;
+    border-top-color: var(--rojo); border-radius: 50%;
+    animation: spin 0.8s linear infinite; margin: 0 auto 1rem;
   }
-
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* ── CONTENEDOR PRINCIPAL ── */
-  #app {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 0 1rem 2rem;
-    position: relative;
-    z-index: 10;
-  }
+  /* APP */
+  #app { max-width: 720px; margin: 0 auto; padding: 0 1rem 3rem; position: relative; z-index: 10; }
 
-  /* ── TARJETA DE PREGUNTA ── */
+  /* TARJETA */
   .q-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 18px; padding: 1.5rem; margin-bottom: 1rem;
     animation: fadeUp 0.3s ease;
   }
-
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(12px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-
-  .q-meta {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-
+  .q-meta { display: flex; gap: 8px; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; }
   .badge-area {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 4px 12px;
-    border-radius: 20px;
-    background: rgba(232,41,74,0.15);
-    color: var(--rojo-suave);
-    border: 1px solid rgba(232,41,74,0.3);
+    font-size: 11px; font-weight: 600; letter-spacing: 1px;
+    text-transform: uppercase; padding: 4px 12px; border-radius: 20px;
+    background: rgba(232,41,74,0.15); color: var(--rojo-suave); border: 1px solid rgba(232,41,74,0.3);
   }
-
-  .badge-dif {
-    font-size: 11px;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-weight: 500;
-  }
-
-  .dif-baja  { background: rgba(46,204,113,0.1);  color: #2ecc71; border: 1px solid rgba(46,204,113,0.3); }
+  .badge-dif { font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 500; }
+  .dif-baja  { background: rgba(46,204,113,0.1);  color: #2ecc71;       border: 1px solid rgba(46,204,113,0.3); }
   .dif-media { background: rgba(245,166,35,0.1);  color: var(--dorado); border: 1px solid rgba(245,166,35,0.3); }
   .dif-alta  { background: rgba(232,41,74,0.1);   color: var(--rojo-suave); border: 1px solid rgba(232,41,74,0.3); }
-
-  .q-num {
-    margin-left: auto;
-    font-size: 12px;
-    color: var(--texto2);
-  }
+  .q-num { margin-left: auto; font-size: 12px; color: var(--texto2); }
 
   /* CONTEXTO */
   .q-contexto {
-    background: rgba(255,255,255,0.04);
-    border-left: 3px solid var(--rojo);
-    border-radius: 0 10px 10px 0;
-    padding: 1rem;
-    font-size: 13px;
-    line-height: 1.7;
-    color: #ccc;
-    margin-bottom: 1.2rem;
-    max-height: 180px;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--rojo) transparent;
+    background: rgba(255,255,255,0.04); border-left: 3px solid var(--rojo);
+    border-radius: 0 10px 10px 0; padding: 1rem;
+    font-size: 13px; line-height: 1.7; color: #ccc; margin-bottom: 1.2rem;
+    max-height: 200px; overflow-y: auto;
+    scrollbar-width: thin; scrollbar-color: var(--rojo) transparent;
   }
-
   .q-contexto-label {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--rojo-suave);
-    font-weight: 600;
-    margin-bottom: 6px;
+    font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--rojo-suave); font-weight: 600; margin-bottom: 6px;
   }
 
   /* ENUNCIADO */
-  .q-texto {
-    font-size: 15px;
-    line-height: 1.7;
-    color: var(--texto);
-    margin-bottom: 1.2rem;
-    font-weight: 500;
-  }
+  .q-texto { font-size: 15px; line-height: 1.7; color: var(--texto); margin-bottom: 1.2rem; font-weight: 500; }
 
   /* OPCIONES */
   .opciones { display: flex; flex-direction: column; gap: 10px; }
 
   .opt {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 12px 16px;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.1);
-    cursor: pointer;
-    background: rgba(255,255,255,0.03);
-    color: var(--texto);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    text-align: left;
-    transition: all 0.15s;
-    line-height: 1.5;
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 13px 16px; border-radius: 12px;
+    border: 1.5px solid rgba(255,255,255,0.1);
+    cursor: pointer; background: rgba(255,255,255,0.03);
+    color: var(--texto); font-family: 'DM Sans', sans-serif;
+    font-size: 14px; text-align: left;
+    transition: all 0.18s; line-height: 1.5; width: 100%;
   }
 
-  .opt:hover:not(:disabled) {
-    border-color: rgba(232,41,74,0.5);
-    background: rgba(232,41,74,0.07);
+  /* Hover normal */
+  .opt:not(.seleccionada):not(:disabled):hover {
+    border-color: rgba(192,38,211,0.5);
+    background: rgba(192,38,211,0.07);
+    transform: translateX(4px);
+  }
+
+  /* ★ SELECCIONADA — color magenta vivo ★ */
+  .opt.seleccionada {
+    border-color: var(--magenta);
+    background: rgba(192,38,211,0.2);
+    color: #f0abfc;
+    box-shadow: 0 0 14px rgba(192,38,211,0.35), inset 0 0 0 1px rgba(192,38,211,0.3);
+    transform: translateX(4px);
+  }
+  .opt.seleccionada .opt-letra {
+    background: var(--magenta);
+    color: white;
+    box-shadow: 0 0 8px rgba(192,38,211,0.6);
   }
 
   .opt-letra {
-    min-width: 26px;
-    height: 26px;
-    border-radius: 50%;
+    min-width: 26px; height: 26px; border-radius: 50%;
     background: rgba(255,255,255,0.08);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: 700;
-    flex-shrink: 0;
-    margin-top: 1px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+    transition: all 0.18s;
   }
-
-  .opt.correct {
-    background: rgba(46,204,113,0.12);
-    border-color: rgba(46,204,113,0.5);
-    color: #2ecc71;
-  }
-
-  .opt.correct .opt-letra { background: rgba(46,204,113,0.3); }
-
-  .opt.wrong {
-    background: rgba(232,41,74,0.1);
-    border-color: rgba(232,41,74,0.4);
-    color: #ff6b81;
-  }
-
-  .opt.wrong .opt-letra { background: rgba(232,41,74,0.25); }
-
   .opt:disabled { cursor: default; }
 
-  /* EXPLICACIÓN */
-  .explicacion {
-    margin-top: 1.2rem;
-    padding: 1rem 1.2rem;
-    background: rgba(245,166,35,0.07);
-    border-radius: 12px;
-    border-left: 3px solid var(--dorado);
-    animation: fadeUp 0.25s ease;
-  }
-
-  .explicacion-label {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--dorado);
-    font-weight: 600;
-    margin-bottom: 6px;
-  }
-
-  .explicacion p {
-    font-size: 13px;
-    line-height: 1.7;
-    color: #ddd;
+  /* Aviso de selección */
+  .aviso-seleccion {
+    margin-top: 12px; text-align: center;
+    font-size: 12px; color: #c084fc;
+    animation: fadeUp 0.2s ease;
   }
 
   /* NAV */
   .nav-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    margin-top: 0.5rem;
+    display: flex; justify-content: space-between;
+    align-items: center; gap: 10px; margin-top: 0.5rem;
   }
-
   .btn {
-    padding: 10px 22px;
-    border-radius: 10px;
+    padding: 10px 22px; border-radius: 10px;
     border: 1px solid rgba(255,255,255,0.15);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    background: transparent;
-    color: var(--texto);
-    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+    cursor: pointer; background: transparent; color: var(--texto); transition: all 0.15s;
   }
-
-  .btn:hover { border-color: var(--rojo); color: white; }
+  .btn:hover:not(:disabled) { border-color: var(--rojo); color: white; }
   .btn:disabled { opacity: 0.3; cursor: default; }
-
   .btn-primary {
     background: linear-gradient(135deg, var(--rojo), #c0183a);
-    border: none;
-    color: white;
-    font-weight: 600;
+    border: none; color: white; font-weight: 600;
   }
+  .btn-primary:hover:not(:disabled) { opacity: 0.9; transform: translateY(-1px); }
 
-  .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
-
-  /* RESULTADO FINAL */
-  .resultado {
-    text-align: center;
-    padding: 3rem 1rem;
-    animation: fadeUp 0.4s ease;
-  }
-
+  /* RESULTADO */
+  .resultado { text-align: center; padding: 2rem 1rem; animation: fadeUp 0.4s ease; }
   .resultado-score {
-    font-family: 'Playfair Display', serif;
-    font-size: 80px;
-    font-weight: 900;
+    font-family: 'Playfair Display', serif; font-size: 90px; font-weight: 900;
     background: linear-gradient(135deg, var(--dorado), var(--rojo-suave));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    line-height: 1;
-    margin-bottom: 0.5rem;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; line-height: 1; margin-bottom: 0.5rem;
   }
+  .resultado h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 0.5rem; color: white; }
+  .resultado p { color: var(--texto2); margin-bottom: 1.5rem; font-size: 15px; }
 
-  .resultado h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    margin-bottom: 0.5rem;
-    color: white;
+  /* REVISIÓN */
+  .revision-titulo {
+    font-family: 'Playfair Display', serif; font-size: 1.2rem;
+    margin: 2rem 0 1rem; color: var(--dorado); text-align: left; padding-left: 4px;
   }
-
-  .resultado p {
-    color: var(--texto2);
-    margin-bottom: 2rem;
-    font-size: 15px;
+  .revision-item {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.2rem; margin-bottom: 1rem; text-align: left;
   }
+  .revision-estado { font-size: 12px; font-weight: 600; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .estado-ok   { color: #2ecc71; }
+  .estado-fail { color: var(--rojo-suave); }
+  .estado-skip { color: var(--texto2); }
+  .revision-texto { font-size: 14px; color: #ddd; margin-bottom: 8px; line-height: 1.5; }
+  .revision-respuesta {
+    font-size: 13px; padding: 7px 12px; border-radius: 8px; margin-bottom: 4px; line-height: 1.4;
+  }
+  .rv-correcta    { background: rgba(46,204,113,0.12); color: #2ecc71; border: 1px solid rgba(46,204,113,0.3); }
+  .rv-turespuesta { background: rgba(232,41,74,0.1);   color: #ff6b81; border: 1px solid rgba(232,41,74,0.3); }
+  .rv-expl { font-size: 12px; color: #bbb; margin-top: 8px; line-height: 1.6; border-top: 1px solid var(--border); padding-top: 8px; }
 
-  /* MODAL BIENVENIDA */
+  /* MODAL */
   .overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-    padding: 1rem;
-    backdrop-filter: blur(6px);
+    position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 100; padding: 1rem; backdrop-filter: blur(6px);
   }
-
   .modal {
-    background: var(--card2);
-    border: 1px solid rgba(232,41,74,0.3);
-    border-radius: 24px;
-    padding: 2.5rem 2rem;
-    max-width: 480px;
-    width: 100%;
-    text-align: center;
-    position: relative;
+    background: var(--card2); border: 1px solid rgba(232,41,74,0.3);
+    border-radius: 24px; padding: 2.5rem 2rem;
+    max-width: 480px; width: 100%; text-align: center;
     box-shadow: 0 0 60px rgba(232,41,74,0.15);
   }
-
   .modal-emoji { font-size: 48px; margin-bottom: 1rem; display: block; }
-
   .modal h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
+    font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 0.5rem;
     background: linear-gradient(135deg, #fff, var(--dorado));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   }
-
   .modal-nombre {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--rojo-suave);
-    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif; font-size: 2rem;
+    font-weight: 700; color: var(--rojo-suave); margin-bottom: 0.75rem;
   }
+  .modal p { font-size: 14px; color: var(--texto2); line-height: 1.7; margin-bottom: 1rem; }
+  .modal-firma { font-size: 13px; color: var(--dorado); margin-bottom: 2rem; font-style: italic; }
 
-  .modal p {
-    font-size: 14px;
-    color: var(--texto2);
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-  }
+  .error-msg { text-align: center; padding: 2rem; color: var(--rojo-suave); }
 
-  .modal-firma {
-    font-size: 13px;
-    color: var(--dorado);
-    margin-bottom: 2rem;
-    font-style: italic;
-  }
-
-  /* ERROR */
-  .error-msg {
-    text-align: center;
-    padding: 2rem;
-    color: var(--rojo-suave);
-  }
-
-  /* RESPONSIVE */
   @media (max-width: 500px) {
     .q-card { padding: 1rem; }
     .q-contexto { font-size: 12px; }
     .q-texto { font-size: 14px; }
     .opt { font-size: 13px; padding: 10px 12px; }
+    .resultado-score { font-size: 70px; }
   }
 </style>
 </head>
 <body>
 
-<!-- MODAL DE BIENVENIDA -->
+<!-- MODAL BIENVENIDA -->
 <div class="overlay" id="modal">
   <div class="modal">
     <span class="modal-emoji">⭐</span>
     <h2>¡Bienvenida al</h2>
     <div class="modal-nombre">Curso PreICFES</div>
-    <div class="modal-nombre" style="font-size:1.4rem; margin-top:-0.5rem;">Samara Gabriela</div>
-    <p>Esta herramienta fue creada especialmente para ti, con preguntas reales del examen Saber 11, explicaciones detalladas y seguimiento de tu progreso.<br><br>
-    Cada pregunta que respondas te acerca un paso más a ese puntaje que mereces. <span class="heart">♥</span></p>
+    <div class="modal-nombre" style="font-size:1.4rem; margin-top:-0.5rem; margin-bottom:1rem;">Samara Gabriela</div>
+    <p>Esta herramienta fue creada especialmente para ti, con preguntas reales del examen Saber 11°. Responde todas, y al terminar verás tu resultado completo con explicaciones. <span class="heart">♥</span></p>
     <p class="modal-firma">Diseñado con mucho cariño por el Ingeniero Nelson Ruiz Lozano</p>
     <button class="btn btn-primary" onclick="cerrarModal()" style="width:100%; padding:14px; font-size:15px;">
       ¡Comenzar a practicar! 🚀
@@ -571,23 +345,19 @@
   </div>
 </header>
 
-<!-- MARCADOR -->
+<!-- SCORE -->
 <div class="score-bar">
   <div class="score-card">
-    <div class="num" id="sc-correctas">0</div>
-    <div class="lbl">Correctas</div>
+    <div class="num" id="sc-respondidas">0</div>
+    <div class="lbl">Respondidas</div>
   </div>
   <div class="score-card">
-    <div class="num" id="sc-incorrectas">0</div>
-    <div class="lbl">Incorrectas</div>
-  </div>
-  <div class="score-card">
-    <div class="num" id="sc-pct">—</div>
-    <div class="lbl">Acierto</div>
+    <div class="num" id="sc-pendientes">0</div>
+    <div class="lbl">Pendientes</div>
   </div>
   <div class="score-card">
     <div class="num" id="sc-total">0</div>
-    <div class="lbl">Respondidas</div>
+    <div class="lbl">Total</div>
   </div>
 </div>
 
@@ -597,7 +367,7 @@
 <!-- PROGRESO -->
 <div class="progress-wrap">
   <div class="progress-info">
-    <span id="prog-texto">Pregunta 0 de 0</span>
+    <span id="prog-texto">Pregunta 1 de 0</span>
     <span id="prog-pct">0%</span>
   </div>
   <div class="progress-bg">
@@ -605,23 +375,22 @@
   </div>
 </div>
 
-<!-- APP PRINCIPAL -->
+<!-- APP -->
 <div id="app">
   <div class="loading" id="loading">
     <div class="spinner"></div>
-    <p>Cargando preguntas...</p>
+    <p>Cargando preguntas para Samara...</p>
   </div>
 </div>
 
 <script>
-// ── CONFIGURACIÓN DE ARCHIVOS JSON ──
-// Agrega aquí los archivos JSON cuando los vayas subiendo a GitHub
+// ── ARCHIVOS JSON ──
 const ARCHIVOS = {
-  "Lectura Crítica":     "preguntas_lectura_critica.json",
-  "Matemáticas":         "preguntas_matematicas.json",
-  "Ciencias Naturales":  "preguntas_ciencias.json",
-  "Sociales":            "preguntas_sociales.json",
-  "Inglés":              "preguntas_ingles.json"
+  "Lectura Crítica":    "preguntas_lectura_critica.json",
+  "Matemáticas":        "preguntas_matematicas.json",
+  "Ciencias Naturales": "preguntas_ciencias.json",
+  "Sociales":           "preguntas_sociales.json",
+  "Inglés":             "preguntas_ingles.json"
 };
 
 // ── ESTADO ──
@@ -630,142 +399,130 @@ let preguntasFiltradas = [];
 let areaActual = "Todas";
 let idx = 0;
 let historial = {};
-let correctas = 0, incorrectas = 0;
 let areasDisponibles = new Set();
 
-// ── INICIO ──
+// ── CARGA ──
 async function cargarTodo() {
   banco = [];
-  const promises = Object.entries(ARCHIVOS).map(async ([area, archivo]) => {
+  await Promise.all(Object.entries(ARCHIVOS).map(async ([area, archivo]) => {
     try {
       const res = await fetch(archivo);
       if (!res.ok) return;
       const data = await res.json();
       data.forEach(p => { p.area = area; banco.push(p); });
       areasDisponibles.add(area);
-    } catch(e) {
-      // Archivo no disponible aún, se ignora silenciosamente
-    }
-  });
-  await Promise.all(promises);
+    } catch(e) {}
+  }));
+
+  document.getElementById('loading').style.display = 'none';
 
   if (banco.length === 0) {
     document.getElementById('app').innerHTML = `
       <div class="error-msg">
-        <p style="font-size:2rem">📂</p>
-        <p>No se encontraron archivos de preguntas.<br>
-        Asegúrate de subir los archivos JSON al repositorio.</p>
+        <p style="font-size:2.5rem;margin-bottom:1rem">📂</p>
+        <p>No se encontraron archivos de preguntas.<br>Sube los archivos JSON al repositorio.</p>
       </div>`;
     return;
   }
-
   renderTabs();
   filtrar();
 }
 
 // ── TABS ──
 function renderTabs() {
-  const cont = document.getElementById('tabs');
-  const areas = ["Todas", ...Array.from(areasDisponibles)];
-  cont.innerHTML = areas.map(a =>
-    `<button class="tab${a === areaActual ? ' active' : ''}" onclick="setArea('${a}')">${a}</button>`
-  ).join('');
+  document.getElementById('tabs').innerHTML =
+    ["Todas", ...Array.from(areasDisponibles)].map(a =>
+      `<button class="tab${a===areaActual?' active':''}" onclick="setArea('${a}')">${a}</button>`
+    ).join('');
 }
 
 function setArea(a) {
-  areaActual = a;
-  idx = 0;
-  filtrar();
-  renderTabs();
+  areaActual = a; idx = 0; historial = {};
+  filtrar(); renderTabs();
 }
 
+// ── FILTRO ──
 function filtrar() {
   preguntasFiltradas = areaActual === "Todas"
     ? [...banco]
     : banco.filter(q => q.area === areaActual);
+  updateScore();
   render();
 }
 
 // ── SCORE ──
 function updateScore() {
-  const total = correctas + incorrectas;
-  document.getElementById('sc-correctas').textContent = correctas;
-  document.getElementById('sc-incorrectas').textContent = incorrectas;
-  document.getElementById('sc-pct').textContent = total > 0 ? Math.round(correctas/total*100) + '%' : '—';
-  document.getElementById('sc-total').textContent = total;
+  const total = preguntasFiltradas.length;
+  const resp  = Object.keys(historial).length;
+  document.getElementById('sc-respondidas').textContent = resp;
+  document.getElementById('sc-pendientes').textContent  = Math.max(0, total - resp);
+  document.getElementById('sc-total').textContent       = total;
 }
 
-// ── RENDER PRINCIPAL ──
+// ── RENDER ──
 function render() {
-  document.getElementById('loading').style.display = 'none';
-  const app = document.getElementById('app');
+  const app   = document.getElementById('app');
   const total = preguntasFiltradas.length;
-
-  // Progreso
-  const pct = total > 0 ? Math.round(idx / total * 100) : 0;
-  document.getElementById('progress-fill').style.width = pct + '%';
-  document.getElementById('prog-texto').textContent = `Pregunta ${Math.min(idx+1, total)} de ${total}`;
-  document.getElementById('prog-pct').textContent = pct + '%';
-
   if (total === 0) {
     app.innerHTML = `<div class="error-msg"><p>No hay preguntas en esta área todavía.</p></div>`;
     return;
   }
 
-  if (idx >= total) {
-    renderResultado();
-    return;
-  }
+  // Progreso
+  const pct = Math.round(idx / total * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('prog-texto').textContent    = `Pregunta ${idx+1} de ${total}`;
+  document.getElementById('prog-pct').textContent      = pct + '%';
+  updateScore();
 
-  const q = preguntasFiltradas[idx];
+  if (idx >= total) { renderResultado(); return; }
+
+  const q       = preguntasFiltradas[idx];
   const histKey = areaActual + '_' + idx;
-  const respondida = historial[histKey] !== undefined;
-  const seleccion = historial[histKey];
+  const sel     = historial[histKey]; // undefined si no ha respondido
+  const resp    = sel !== undefined;
 
-  const difClass = q.dificultad === 'baja' ? 'dif-baja' : q.dificultad === 'media' ? 'dif-media' : 'dif-alta';
-  const difLabel = q.dificultad === 'baja' ? '● Fácil' : q.dificultad === 'media' ? '●● Medio' : '●●● Difícil';
+  const difClass = q.dificultad==='baja' ? 'dif-baja' : q.dificultad==='media' ? 'dif-media' : 'dif-alta';
+  const difLabel = q.dificultad==='baja' ? '● Fácil'  : q.dificultad==='media' ? '●● Medio'  : '●●● Difícil';
 
-  const contextoHTML = q.contexto ? `
-    <div class="q-contexto">
-      <div class="q-contexto-label">📖 Contexto / Lectura</div>
-      ${q.contexto.replace(/\n/g, '<br>')}
-    </div>` : '';
+  const contextoHTML = q.contexto
+    ? `<div class="q-contexto">
+         <div class="q-contexto-label">📖 Lectura / Contexto</div>
+         ${q.contexto.replace(/\n/g,'<br>')}
+       </div>` : '';
 
   const opcionesHTML = q.opciones.map((op, i) => {
-    let cls = '';
-    if (respondida) {
-      if (i === q.correcta) cls = ' correct';
-      else if (i === seleccion && seleccion !== q.correcta) cls = ' wrong';
-    }
-    const letra = String.fromCharCode(65 + i);
-    return `<button class="opt${cls}" ${respondida ? 'disabled' : ''} onclick="responder(${i})">
+    const cls    = (resp && i===sel) ? ' seleccionada' : '';
+    const letra  = String.fromCharCode(65+i);
+    return `<button class="opt${cls}" ${resp?'disabled':''} onclick="responder(${i})">
       <span class="opt-letra">${letra}</span>
       <span>${op}</span>
     </button>`;
   }).join('');
 
-  const explicacionHTML = respondida ? `
-    <div class="explicacion">
-      <div class="explicacion-label">💡 Explicación</div>
-      <p>${q.explicacion}</p>
-    </div>` : '';
+  const avisoHTML = resp
+    ? `<div class="aviso-seleccion">
+        ✔ Elegiste <strong>${String.fromCharCode(65+sel)}</strong> — verás si es correcta al final
+       </div>` : '';
+
+  const esFinal = idx === total - 1;
 
   app.innerHTML = `
     <div class="q-card">
       <div class="q-meta">
         <span class="badge-area">${q.area}</span>
         <span class="badge-dif ${difClass}">${difLabel}</span>
-        <span class="q-num">${idx + 1} / ${total}</span>
+        <span class="q-num">${idx+1} / ${total}</span>
       </div>
       ${contextoHTML}
       <div class="q-texto">${q.texto}</div>
       <div class="opciones">${opcionesHTML}</div>
-      ${explicacionHTML}
+      ${avisoHTML}
     </div>
     <div class="nav-row">
-      <button class="btn" onclick="anterior()" ${idx === 0 ? 'disabled' : ''}>← Anterior</button>
+      <button class="btn" onclick="anterior()" ${idx===0?'disabled':''}>← Anterior</button>
       <button class="btn btn-primary" onclick="siguiente()">
-        ${idx < total - 1 ? 'Siguiente →' : 'Ver resultados ✓'}
+        ${esFinal ? '✓ Ver mi resultado' : 'Siguiente →'}
       </button>
     </div>`;
 }
@@ -775,57 +532,94 @@ function responder(i) {
   const histKey = areaActual + '_' + idx;
   if (historial[histKey] !== undefined) return;
   historial[histKey] = i;
-  const q = preguntasFiltradas[idx];
-  if (i === q.correcta) correctas++;
-  else incorrectas++;
-  updateScore();
   render();
 }
 
-function siguiente() { if (idx <= preguntasFiltradas.length) { idx++; render(); } }
+function siguiente() { idx++; render(); }
 function anterior()  { if (idx > 0) { idx--; render(); } }
 
-// ── RESULTADO ──
+// ── RESULTADO FINAL ──
 function renderResultado() {
-  const total = correctas + incorrectas;
-  const pct = total > 0 ? Math.round(correctas / total * 100) : 0;
-  let emoji, mensaje;
-  if (pct >= 85) { emoji = '🏆'; mensaje = '¡Excelente, Samara! Ese puntaje habla de tu esfuerzo.'; }
-  else if (pct >= 70) { emoji = '⭐'; mensaje = '¡Muy bien! Vas por buen camino, sigue así.'; }
-  else if (pct >= 50) { emoji = '💪'; mensaje = 'Buen avance. Repasa los temas y vuelve a intentarlo.'; }
-  else { emoji = '📚'; mensaje = 'Sigue practicando, cada intento te hace más fuerte.'; }
+  const total = preguntasFiltradas.length;
+  let correctas=0, incorrectas=0, sinRes=0;
+
+  preguntasFiltradas.forEach((q,i) => {
+    const sel = historial[areaActual+'_'+i];
+    if (sel === undefined) sinRes++;
+    else if (sel === q.correcta) correctas++;
+    else incorrectas++;
+  });
+
+  const resp = correctas + incorrectas;
+  const pct  = resp > 0 ? Math.round(correctas/resp*100) : 0;
+
+  let emoji, msg;
+  if      (pct >= 85) { emoji='🏆'; msg='¡Excelente, Samara! Ese puntaje habla de tu esfuerzo.'; }
+  else if (pct >= 70) { emoji='⭐'; msg='¡Muy bien! Vas por buen camino, sigue así.'; }
+  else if (pct >= 50) { emoji='💪'; msg='Buen avance. Repasa los temas y vuelve a intentarlo.'; }
+  else                { emoji='📚'; msg='Sigue practicando, cada intento te hace más fuerte.'; }
+
+  const revisionHTML = preguntasFiltradas.map((q,i) => {
+    const sel    = historial[areaActual+'_'+i];
+    const esCor  = sel === q.correcta;
+    const sinR   = sel === undefined;
+    const titulo = q.texto.length > 110 ? q.texto.slice(0,110)+'…' : q.texto;
+
+    let estadoHTML, respHTML;
+    if (sinR) {
+      estadoHTML = `<div class="revision-estado estado-skip">○ Sin responder</div>`;
+      respHTML   = `<div class="revision-respuesta rv-correcta">✓ Correcta: ${String.fromCharCode(65+q.correcta)}) ${q.opciones[q.correcta]}</div>`;
+    } else if (esCor) {
+      estadoHTML = `<div class="revision-estado estado-ok">✓ Correcta</div>`;
+      respHTML   = `<div class="revision-respuesta rv-correcta">✓ ${String.fromCharCode(65+q.correcta)}) ${q.opciones[q.correcta]}</div>`;
+    } else {
+      estadoHTML = `<div class="revision-estado estado-fail">✗ Incorrecta</div>`;
+      respHTML   = `<div class="revision-respuesta rv-turespuesta">✗ Tu respuesta: ${String.fromCharCode(65+sel)}) ${q.opciones[sel]}</div>
+                    <div class="revision-respuesta rv-correcta">✓ Correcta: ${String.fromCharCode(65+q.correcta)}) ${q.opciones[q.correcta]}</div>`;
+    }
+
+    return `<div class="revision-item">
+      ${estadoHTML}
+      <div class="revision-texto"><strong>P${i+1}:</strong> ${titulo}</div>
+      ${respHTML}
+      <div class="rv-expl">💡 ${q.explicacion}</div>
+    </div>`;
+  }).join('');
 
   document.getElementById('app').innerHTML = `
     <div class="resultado">
-      <div style="font-size:3rem; margin-bottom:0.5rem">${emoji}</div>
+      <div style="font-size:3rem;margin-bottom:0.5rem">${emoji}</div>
       <div class="resultado-score">${pct}%</div>
-      <h2>${mensaje}</h2>
-      <p>${correctas} correctas de ${total} preguntas en ${areaActual === 'Todas' ? 'todas las áreas' : areaActual}</p>
-      <button class="btn btn-primary" onclick="reiniciar()" style="padding:14px 32px; font-size:15px; margin-right:10px">
-        🔄 Volver a practicar
-      </button>
-      <button class="btn" onclick="setArea('Todas')" style="padding:14px 22px; font-size:14px">
-        Ver todas las áreas
-      </button>
+      <h2>${msg}</h2>
+      <p>
+        <strong style="color:#2ecc71">${correctas} correctas</strong> ·
+        <strong style="color:#ff6b81">${incorrectas} incorrectas</strong>
+        ${sinRes>0?`· <strong style="color:#a0a0c0">${sinRes} sin responder</strong>`:''}
+        &nbsp;de ${total} preguntas
+      </p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="reiniciar()" style="padding:12px 28px;">🔄 Volver a practicar</button>
+        <button class="btn" onclick="setArea('Todas')" style="padding:12px 20px;">Cambiar área</button>
+      </div>
+    </div>
+    <div class="revision-titulo">📋 Revisión detallada de tus respuestas</div>
+    ${revisionHTML}
+    <div style="text-align:center;margin-top:2rem;">
+      <button class="btn btn-primary" onclick="reiniciar()" style="padding:12px 28px;">🔄 Volver a practicar</button>
     </div>`;
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // ── REINICIAR ──
 function reiniciar() {
-  idx = 0;
-  historial = {};
-  correctas = 0;
-  incorrectas = 0;
-  updateScore();
-  filtrar();
+  idx=0; historial={};
+  updateScore(); filtrar();
+  window.scrollTo({ top:0, behavior:'smooth' });
 }
 
-// ── MODAL ──
-function cerrarModal() {
-  document.getElementById('modal').style.display = 'none';
-}
+function cerrarModal() { document.getElementById('modal').style.display='none'; }
 
-// ── ARRANCAR ──
 cargarTodo();
 </script>
 </body>
